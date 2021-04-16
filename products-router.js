@@ -1,14 +1,18 @@
 const express = require("express");
-const productsData = require("./products-data");
+const productsData = require("./products-data")
+const {Product} = require("./products-model")
 const router = express.Router();
 
 router.route("/").get((req, res) => {
-  res.json(productsData);
+  const products = Product.find()
+  res.json(products)
 });
 
-router.route("/:id").get((req, res) => {
+router.route("/:id").get(async (req, res) => {
   const { id } = req.params;
-  res.json(productsData.find((product) => product.id === id));
+  const product = await Product.findById(id).exec()
+  console.log(product)
+  res.json(product);
 });
 
 module.exports = router;

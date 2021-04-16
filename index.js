@@ -1,13 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { connectDB } = require("./db")
+const {populateProductsCollection} = require("./products-model")
+const productsRouter = require("./products-router");
+const genericRouter = require("./generic-router");
+
 
 const app = express();
 const port = 4000;
 app.use(cors());
 app.use(bodyParser.json());
-const productsRouter = require("./products-router");
-const genericRouter = require("./generic-router");
+
+connectDB()
+
+populateProductsCollection()
+
+
 
 app.get("/", (req, res) => {
   res.send("API for CeresKart");

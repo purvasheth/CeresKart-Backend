@@ -2,7 +2,6 @@ const faker = require("faker");
 
 faker.seed(1024);
 const products = [...Array(100)].map((item) => ({
-  id: faker.datatype.uuid(),
   name: faker.commerce.productName(),
   image: faker.random.image(),
   price: faker.commerce.price(),
