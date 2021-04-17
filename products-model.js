@@ -3,6 +3,7 @@ const { Schema } = mongoose
 const productsData = require("./products-data");
 
 const productSchema = new Schema({
+  id: Schema.Types.ObjectId,
   name: String,
   image: String,
   price: Number,
@@ -16,7 +17,7 @@ const productSchema = new Schema({
 const Product = mongoose.model('Product', productSchema)
 
 // one time add in db
-async function populateProductsCollection() {
+async function fillProductsCollection() {
   try {
     productsData.forEach(async (product) => {
       const newProduct = new Product(product)
@@ -29,4 +30,4 @@ async function populateProductsCollection() {
   }
 }
 
-module.exports = { Product,populateProductsCollection }
+module.exports = { Product,fillProductsCollection }
