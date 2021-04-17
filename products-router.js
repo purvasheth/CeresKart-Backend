@@ -1,9 +1,8 @@
-const express = require("express");
+const express = require("express")
 // const productsData = require("./products-data")
 const { wrapWithTryCatch } = require("./utils")
 const { Product } = require("./products-model")
-const router = express.Router();
-
+const router = express.Router()
 
 router.get("/", (req, res) => {
   wrapWithTryCatch(res, async () => {
@@ -14,8 +13,8 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   wrapWithTryCatch(res, async () => {
-    const { id } = req.params;
-    const product = await Product.findById(id).exec()
+    const { id } = req.params
+    const product = await Product.findById(id)
     res.json(product)
   })
 });

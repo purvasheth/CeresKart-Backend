@@ -24,9 +24,13 @@ app.use("/products", productsRouter);
 app.use("/cart", cartRouter);
 app.use("/wishlist", wishlistRouter);
 
+app.use((err,req,res,next)=>{
+  if (res.headersSent) {
+    return next(err)
+  }
+  res.status(500).json({error:err.message})
+})
+
 app.listen(port, () => {
   console.log(`App started on ${port}!`);
 });
-
-
-
