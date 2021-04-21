@@ -17,6 +17,7 @@ router
     });
   })
   .post((req, res) => {
+    // discuss alternate approaches for cart update here.
     wrapWithTryCatch(res, async () => {
       const product = req.body;
       const { id, qty } = product;

@@ -1,5 +1,4 @@
 const express = require("express");
-// const productsData = require("./products-data")
 const { wrapWithTryCatch } = require("../utils");
 const { Product } = require("../models/products-model");
 const router = express.Router();
