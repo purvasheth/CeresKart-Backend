@@ -14,7 +14,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 connectDB();
-console.log("prints this")
 // run once
 // fillProductsCollection()
 
