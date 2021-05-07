@@ -7,14 +7,18 @@ const router = express.Router();
 router
   .route("/")
   .get((req, res) => {
-    wrapWithTryCatch(res, async () => {
-      const wishlistItems = await WishlistItem.find().populate("_id");
-      const normalizedWishlistItems = wishlistItems.map((item) => {
-        const { _id, ...doc } = item._id._doc;
-        return { id: _id, ...doc };
-      });
-      res.json(normalizedWishlistItems);
-    });
+    wrapWithTryCatch(
+      res,
+      async () => {
+        const wishlistItems = await WishlistItem.find().populate("_id");
+        const normalizedWishlistItems = wishlistItems.map((item) => {
+          const { _id, ...doc } = item._id._doc;
+          return { id: _id, ...doc };
+        });
+        res.json(normalizedWishlistItems);
+      },
+      502
+    );
   })
   .post((req, res) => {
     wrapWithTryCatch(res, async () => {

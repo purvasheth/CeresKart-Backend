@@ -7,14 +7,18 @@ const router = express.Router();
 router
   .route("/")
   .get((req, res) => {
-    wrapWithTryCatch(res, async () => {
-      const cartItems = await CartItem.find().populate("_id");
-      const normalizedCartItems = cartItems.map((item) => {
-        const { _id, ...doc } = item._id._doc;
-        return { id: _id, ...doc, qty: item.qty };
-      });
-      res.json(normalizedCartItems);
-    });
+    wrapWithTryCatch(
+      res,
+      async () => {
+        const cartItems = await CartItem.find().populate("_id");
+        const normalizedCartItems = cartItems.map((item) => {
+          const { _id, ...doc } = item._id._doc;
+          return { id: _id, ...doc, qty: item.qty };
+        });
+        res.json(normalizedCartItems);
+      },
+      502
+    );
   })
   .post((req, res) => {
     // discuss alternate approaches for cart update here.

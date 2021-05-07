@@ -1,10 +1,9 @@
-async function wrapWithTryCatch(res, callback) {
+async function wrapWithTryCatch(res, callback, statusCode = 500) {
   try {
-   await callback()
-  }
-  catch (error) {
-    res.status(500).json({ message: error.message })
+    await callback();
+  } catch (error) {
+    res.status(statusCode).json({ message: error.message });
   }
 }
 
-module.exports = { wrapWithTryCatch }
+module.exports = { wrapWithTryCatch };
