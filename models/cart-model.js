@@ -6,6 +6,11 @@ const cartItemSchema = new Schema({
   qty: Number,
 });
 
-const CartItem = mongoose.model("CartItem", cartItemSchema);
+const cartSchema = new Schema({
+  _id: { type: Schema.Types.ObjectId, ref: "User" },
+  cart: [{ type: cartItemSchema }],
+});
 
-module.exports = { CartItem };
+const Cart = mongoose.model("Cart", cartSchema);
+
+module.exports = { Cart };

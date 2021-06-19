@@ -25,7 +25,7 @@ async function fillProductsCollection() {
       console.log(savedProduct);
     });
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
   }
 }
 
