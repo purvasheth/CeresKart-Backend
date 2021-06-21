@@ -45,6 +45,9 @@ router
         userCart.cart.push({ _id: id, qty });
         await userCart.save();
       } else {
+        const {
+          user: { _id: userId },
+        } = req;
         const newUserCart = new Cart({
           _id: userId,
           cart: [{ _id: id, qty }],

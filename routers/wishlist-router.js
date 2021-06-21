@@ -42,6 +42,9 @@ router
       const { id } = product;
       let { userWishlist } = req;
       if (!userWishlist) {
+        const {
+          user: { _id: userId },
+        } = req;
         userWishlist = new Wishlist({ _id: userId, wishlist: [{ _id: id }] });
       } else {
         userWishlist.wishlist.push({ _id: id });
